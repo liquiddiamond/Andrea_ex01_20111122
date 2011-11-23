@@ -9,15 +9,15 @@
 # Every mammal can walk and eat
 class Mammal
 	def self.walk
-		puts(self " started to walk")
-		puts ("walks for " yeld " kilometers")
-		puts(self " ended the walk")
+		puts("started to walk")
+		puts ("walks for " yield " kilometers")
+		puts("ended the walk")
 	end
 	
 	def eat
-		puts(self  " started to eat!")
-		puts ("eats for " yeld " kilometers")
-		puts(self  " ended to eat")
+		puts(" started to eat!")
+		puts ("eats for " yield " kilometers")
+		puts(" ended to eat")
 	end
 end
 
@@ -30,9 +30,9 @@ end
 # Every bunny is a mammal, also can jump
 class Bunny < Mammal
 	def self.jump
-		puts(self  " started to jump")
-		yeld
-		puts(self  " ended to jump")
+		puts(" started to jump")
+		yield
+		puts(" ended to jump")
 	end
 end
 
@@ -54,9 +54,9 @@ bugsBunny	= Bunny.new
 # Bugs Bunny can also talk, because it's special
 # His sentences are made by shuffled words of given dictionaries (array)
 def bugsBunny.talk
-	puts("bugsBunny started to talk!")
-	yeld()
-	puts("bugsBunny ended to talk")
+	puts("started to talk!")
+	yield()
+	puts("ended to talk")
 end
 
 
