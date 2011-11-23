@@ -11,30 +11,52 @@ class Animal
 	@likeBananas = true
 	@meters  = 0
 	@speed   = 0
+	
+	# getBananas is a class method
+	def self.getBananas
+		return @bananas
+	end
+	
+	# getBananas is a class method
+	def self.getBreaths
+		return @breaths
+	end
+	
+	# getBananas is a class method
+	def self.getMeters
+		return @meters
+	end
+	
+	# getBananas is a class method
+	def self.getSpeed
+		return @speed
+	end
 
 	# breathe is an instance method
-	def breathe()
+	def breathe
 		@breaths = @meters * 2
 		@breaths.times do puts "anf "
+		end
 		puts "Breathed #{@breaths} times"
 		puts "Total calories burnt: #{burntcals(@meters)}"
 	end
-
-	# burntcals is a class method	
-	def self.burntcals(dist)
+	
+	# burntcals is an instance method	
+	def burntcals(dist)
 		kcals = dist * 105
 		return kcals
 	end
-
+	
 	# likeBananas? is an instance method
 	def likeBananas?
 		return @likeBananas ? "eek eek!" : "uh uh!"
 	end
-
+	
 	# eatBananas is an instance method
 	def eatBananas(m)
 		if (self.likeBananas? != "uh uh!")
 			@bananas = self.burntcals(m)
+		end
 		return @bananas
 	end
 end
@@ -42,7 +64,7 @@ end
 # subclass of Animal
 class Quadruped < Animal
 	# class constructor
-	def initiate(n, k, m, s, lb)
+	def initialize (n, k, m, s, lb)
 		@name        = n
 		@kind        = k
 		@meters      = m
@@ -61,7 +83,7 @@ class Quadruped < Animal
 	end
 	
 	# getTimeLapse is a class method
-	def self.getTimeLapse
+	def getTimeLapse
 		return (@speed != 0) ? @speed/@meters : 0
 	end
 	
@@ -79,7 +101,7 @@ end
 ###################
 
 # We create three types of objects, a mammal and two bunnies
-cheetah	= Quadruped.new("cheetah", "chimp", 23, 1.2, true)
-dumbo	= Qaudruped.new("dumbo", "elephant", 5, 0.3, false)
+cheetah	= Quadruped.new("cheetah", "chimp", 23, 2, true);
+dumbo	= Quadruped.new("dumbo", "elephant", 5, 1, false);
 
 cheetah.run()
