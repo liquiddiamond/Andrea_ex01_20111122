@@ -1,111 +1,85 @@
 # Andrea_20111122_ex01
 
-###################
-#   Classes
-###################
+###########################
+#   Classes and methods   #
+###########################
 
+# Superclass of Quadruped
 class Animal
-	@@bananas = 0
-	@@breaths = 0
-	@@kind = ""
-	@@name = ""
-	
-	# Breathe is an instance method
-	def breathe(meters)
-		@@breaths = meters * 2
-		@@breaths.times do {puts "anf "}
+	@bananas = 0
+	@breaths = 0
+	@likeBananas = true
+	@meters  = 0
+	@speed   = 0
+
+	# breathe is an instance method
+	def breathe()
+		@breaths = @meters * 2
+		@breaths.times do puts "anf "
+		puts "Breathed #{@breaths} times"
+		puts "Total calories burnt: #{burntcals(@meters)}"
 	end
-	
-	# likeBananas? is a class method
+
+	# burntcals is a class method	
+	def self.burntcals(dist)
+		kcals = dist * 105
+		return kcals
+	end
+
+	# likeBananas? is an instance method
 	def likeBananas?
-		
+		return @likeBananas ? "eek eek!" : "uh uh!"
 	end
-	
-	# eatBananas is a class method
-	def self.eatBananas()
-		@@bananas = 
-		return bananas
+
+	# eatBananas is an instance method
+	def eatBananas(m)
+		if (self.likeBananas? != "uh uh!")
+			@bananas = self.burntcals(m)
+		return @bananas
 	end
 end
 
-class Quadruped < Mammal
-	def self.run()
-		# numero di kilometri
-		# tempo impiegato
+# subclass of Animal
+class Quadruped < Animal
+	# class constructor
+	def initiate(n, k, m, s, lb)
+		@name        = n
+		@kind        = k
+		@meters      = m
+		@speed		 = s
+		@likeBananas = lb
+	end
+	
+	# getKind is a class method
+	def self.getKind()
+		return @kind
+	end
+	
+	# getName is a class method
+	def self.getName
+		return @name
+	end
+	
+	# getTimeLapse is a class method
+	def self.getTimeLapse
+		return (@speed != 0) ? @speed/@meters : 0
+	end
+	
+	#run is an instance method
+	def run()
+		puts "Ran for #{@meters} meters in #{self.getTimeLapse} seconds"
 		# chiama funzione per stampare quante volte ha respirato
-		# chiama funzione per indicare quante banane dovrà mangiare per recuperare le forze
+		self.breathe
 	end
 end
 
 
 ###################
-#   create instances
+#   instances
 ###################
 
 # We create three types of objects, a mammal and two bunnies
-animal		= Mammal.new
-normalBunny	= Bunny.new
-bugsBunny	= Bunny.new
+cheetah	= Quadruped.new("cheetah", "chimp", 23, 1.2, true)
+dumbo	= Qaudruped.new("dumbo", "elephant", 5, 0.3, false)
 
-
-###################
-#   create instance method
-###################
-
-# The sentences are made by shuffled words of given dictionaries (array)
-def bugsBunny.talk
-	puts("started to talk")
-	yield
-	puts("ended to talk")
-end
-
-
-###################
-#   animal
-###################
-
-# Array of distances walked by animal
-distances = [1, 4, 6, 8, 3, 11]
-# Array of things which animal can eat
-food = ["salad", "tomato", "cheese"]
-
-puts "animal:\n------------"
-distances.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
-animal.eat(food.select {|i| i == "cheese"})
-
-
-###################
-#   normalBunny
-###################
-
-# Array of distances walked by normalBunny
-distances = [4, 7, 5, 42]
-# Array of things which normalBunny can eat
-food = ["mushroom", "bread", "honey", "potato", "grass"]
-# Array of things which normalBunny can jump
-obstacles = ["brick", "bush"]
-
-puts "\n\nnormalBunny:\n------------"
-distances.walk {distances.inject(0){|tdist,pdist| tdist + pdist}}
-normalBunny.eat(food.select {|i| i == "mushroom"})
-Bunny.jump(obstacles)
-
-
-###################
-#   bugsBunny
-###################
-
-# Array of distances walked by bugsBunny
-distances = [23, 67, 45, 89]
-# Array of things which bugsBunny can eat
-food = ["carrot", "cucumber", "champagne", "caviar"]
-# Array of things which bugsBunny can jump
-obstacles = ["wall", ""]
-# Array of letters which bugsBunny can say
-phrase = ["Hey", ",", "wassup", "dude", "?"]
-
-puts "\n\nbugsBunny:\n------------"
-Mammal.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
-bugsBunny.eat(food.select {|i| i == "cheese"})
-Bunny.jump(obstacles)
-bugsBunny.say(phrase.sort_by { rand })
+cheetah.run()
