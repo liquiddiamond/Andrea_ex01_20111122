@@ -1,38 +1,39 @@
 # Andrea_20111122_ex01
 
-
 ###################
-#   Mammal class
+#   Classes
 ###################
 
-# Mammal is a class
-# Every mammal can walk and eat
-class Mammal
-	def self.walk
-		puts("started to walk")
-		yield
-		puts("ended the walk")
+class Animal
+	@@bananas = 0
+	@@breaths = 0
+	@@kind = ""
+	@@name = ""
+	
+	# Breathe is an instance method
+	def breathe(meters)
+		@@breaths = meters * 2
+		@@breaths.times do {puts "anf "}
 	end
 	
-	def eat
-		puts(" started to eat!")
-		yield
-		puts(" ended to eat")
+	# likeBananas? is a class method
+	def likeBananas?
+		
+	end
+	
+	# eatBananas is a class method
+	def self.eatBananas()
+		@@bananas = 
+		return bananas
 	end
 end
 
-
-###################
-#   Bunny class
-###################
-
-# Bunny is a Mammal subclass
-# Every bunny is a mammal, also can jump
-class Bunny < Mammal
-	def self.jump
-		puts(" started to jump")
-		yield
-		puts(" ended to jump")
+class Quadruped < Mammal
+	def self.run()
+		# numero di kilometri
+		# tempo impiegato
+		# chiama funzione per stampare quante volte ha respirato
+		# chiama funzione per indicare quante banane dovrà mangiare per recuperare le forze
 	end
 end
 
@@ -51,10 +52,9 @@ bugsBunny	= Bunny.new
 #   create instance method
 ###################
 
-# Bugs Bunny can also talk, because it's special
-# His sentences are made by shuffled words of given dictionaries (array)
+# The sentences are made by shuffled words of given dictionaries (array)
 def bugsBunny.talk
-	puts("started to talk!")
+	puts("started to talk")
 	yield
 	puts("ended to talk")
 end
@@ -70,7 +70,7 @@ distances = [1, 4, 6, 8, 3, 11]
 food = ["salad", "tomato", "cheese"]
 
 puts "animal:\n------------"
-animal.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
+distances.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
 animal.eat(food.select {|i| i == "cheese"})
 
 
@@ -86,9 +86,9 @@ food = ["mushroom", "bread", "honey", "potato", "grass"]
 obstacles = ["brick", "bush"]
 
 puts "\n\nnormalBunny:\n------------"
-normalBunny.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
+distances.walk {distances.inject(0){|tdist,pdist| tdist + pdist}}
 normalBunny.eat(food.select {|i| i == "mushroom"})
-normalBunny.jump(obstacles)
+Bunny.jump(obstacles)
 
 
 ###################
@@ -105,7 +105,7 @@ obstacles = ["wall", ""]
 phrase = ["Hey", ",", "wassup", "dude", "?"]
 
 puts "\n\nbugsBunny:\n------------"
-bugsBunny.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
+Mammal.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
 bugsBunny.eat(food.select {|i| i == "cheese"})
-bugsBunny.jump(obstacles)
+Bunny.jump(obstacles)
 bugsBunny.say(phrase.sort_by { rand })
