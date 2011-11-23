@@ -10,13 +10,13 @@
 class Mammal
 	def self.walk
 		puts("started to walk")
-		puts ("walks for " yield " kilometers")
+		yield
 		puts("ended the walk")
 	end
 	
 	def eat
 		puts(" started to eat!")
-		puts ("eats for " yield " kilometers")
+		yield
 		puts(" ended to eat")
 	end
 end
@@ -55,7 +55,7 @@ bugsBunny	= Bunny.new
 # His sentences are made by shuffled words of given dictionaries (array)
 def bugsBunny.talk
 	puts("started to talk!")
-	yield()
+	yield
 	puts("ended to talk")
 end
 
@@ -65,13 +65,13 @@ end
 ###################
 
 # Array of distances walked by animal
-distances[1, 4, 6, 8, 3, 11]
+distances = [1, 4, 6, 8, 3, 11]
 # Array of things which animal can eat
-food["salad", "tomato", "cheese"]
+food = ["salad", "tomato", "cheese"]
 
 puts "animal:\n------------"
 animal.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
-animal.eat(food.select (|i| i == "cheese"))
+animal.eat(food.select {|i| i == "cheese"})
 
 
 ###################
@@ -79,15 +79,15 @@ animal.eat(food.select (|i| i == "cheese"))
 ###################
 
 # Array of distances walked by normalBunny
-distances[4, 7, 5, 42]
+distances = [4, 7, 5, 42]
 # Array of things which normalBunny can eat
-food["mushroom", "bread", "honey", "potato", "grass"]
+food = ["mushroom", "bread", "honey", "potato", "grass"]
 # Array of things which normalBunny can jump
-obstacles["brick", "bush"]
+obstacles = ["brick", "bush"]
 
 puts "\n\nnormalBunny:\n------------"
 normalBunny.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
-normalBunny.eat(food.select (|i| i == "mushroom"))
+normalBunny.eat(food.select {|i| i == "mushroom"})
 normalBunny.jump(obstacles)
 
 
@@ -96,16 +96,16 @@ normalBunny.jump(obstacles)
 ###################
 
 # Array of distances walked by bugsBunny
-distances[23, 67, 45, 89]
+distances = [23, 67, 45, 89]
 # Array of things which bugsBunny can eat
-food["carrot", "cucumber", "champagne", "caviar"]
+food = ["carrot", "cucumber", "champagne", "caviar"]
 # Array of things which bugsBunny can jump
-obstacles["wall", ""]
+obstacles = ["wall", ""]
 # Array of letters which bugsBunny can say
-phrase["Hey", ",", "wassup", "dude", "?"]
+phrase = ["Hey", ",", "wassup", "dude", "?"]
 
 puts "\n\nbugsBunny:\n------------"
 bugsBunny.walk(distances.inject(0){|tdist,pdist| tdist + pdist})
-bugsBunny.eat(food.select (|i| i == "cheese"))
+bugsBunny.eat(food.select {|i| i == "cheese"})
 bugsBunny.jump(obstacles)
 bugsBunny.say(phrase.sort_by { rand })
