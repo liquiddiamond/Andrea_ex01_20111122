@@ -52,6 +52,14 @@ class Animal
 		return @likeBananas ? "eek eek!" : "uh uh!"
 	end
 	
+	def procPlaces
+		
+	end
+	
+	def lambdaPlaces
+		
+	end
+	
 	# eatBananas is an instance method
 	def eatBananas(m)
 		if (self.likeBananas? != "uh uh!")
@@ -89,7 +97,7 @@ class Quadruped < Animal
 	
 	#run is an instance method
 	def run()
-		puts "Ran for #{@meters} meters in #{self.getTimeLapse} seconds"
+		puts "#{@name} ran for #{@meters} meters in #{self.getTimeLapse} seconds"
 		# chiama funzione per stampare quante volte ha respirato
 		self.breathe
 	end
@@ -105,3 +113,25 @@ cheetah	= Quadruped.new("cheetah", "chimp", 23, 2, true);
 dumbo	= Quadruped.new("dumbo", "elephant", 5, 1, false);
 
 cheetah.run()
+dumbo.run()
+
+
+###################
+#   proc and lambda
+###################
+
+pExample = Proc.new { |p1, p2, p3, p4, p5| [p1, p2, p3, p4, p5] }
+lExample = lambda { |l1, l2, l3, l4, l5| [l1, l2, l3, l4, l5] }
+
+puts pExample.call("Parigi", "Roma")
+puts pExample.call
+puts pExample.call("Parigi", "Roma", "New Yok", "Amsterdam", "Riga")
+# puts pExample.call("Parigi", "Roma", "New Yok", "Amsterdam", "Riga", "Athens") => Error - too much parameters
+
+# puts lExample.call("Parigi", "Roma") => Error - there aren't enough parameters
+# puts lExample.call => Error - no parameters
+puts lExample.call("Parigi", "Roma", "New Yok", "Amsterdam", "Riga")
+# puts lExample.call("Parigi", "Roma", "New Yok", "Amsterdam", "Riga", "Athens") => Error - too much parameters
+
+
+
