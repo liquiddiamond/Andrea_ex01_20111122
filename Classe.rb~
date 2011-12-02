@@ -109,7 +109,7 @@ end
 ###################
 
 dumboArray = ["cheetah", "chimp", 23, 2, true]
-dumboObject = dumboArray.each
+dumboObject = 
 
 
 # We create three types of objects, a mammal and two bunnies
